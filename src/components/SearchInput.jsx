@@ -1,24 +1,35 @@
-import React from "react";
+import React, { Component } from "react";
 
-const SearchInput = (props) => {
-  return (
-    <React.Fragment>
-      <div className="field">
-        <div className="control has-icons-left is-large is-loading">
-          <input
-            type="text"
-            className="input is-large is-rounded"
-            placeholder="Search"
-            name="search"
-            value={props.value}
-          />
-          <span className="icon is-medium is-left">
-            <i className="fa fa-search" />
-          </span>
+export default class SearchInput extends Component {
+  handleChange = e => {
+    this.props.handler(e.target.value);
+  };
+  handleKeyUp = e => {
+    this.props.keyUpHandler(e);
+  };
+
+  render() {
+    const { isLoading, searchValue } = this.props;
+    const inputSpinner = isLoading ? "is-loading" : "";
+    return (
+      <React.Fragment>
+        <div className="field">
+          <div className={`control has-icons-left is-large ${inputSpinner}`}>
+            <input
+              type="text"
+              className="input is-large is-rounded"
+              placeholder="Search"
+              name="search"
+              value={searchValue}
+              onChange={this.handleChange}
+              onKeyUp={this.handleKeyUp}
+            />
+            <span className="icon is-medium is-left">
+              <i className="fa fa-search" />
+            </span>
+          </div>
         </div>
-      </div>
-    </React.Fragment>
-  );
-};
-
-export default SearchInput;
+      </React.Fragment>
+    );
+  }
+}
