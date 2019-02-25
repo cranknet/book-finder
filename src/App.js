@@ -3,6 +3,8 @@ import Header from "./components/Header";
 import Main from "./components/Main";
 import Footer from "./components/Footer";
 import SearchInput from "./components/SearchInput";
+import getBooks from "./helpers/Helpers";
+import { API_URL, API_URL_FIELDS } from "./constants/constants";
 class App extends Component {
   state = {
     searchValue: "",
@@ -14,9 +16,11 @@ class App extends Component {
     });
   };
   handleSearch = e => {
+    const { searchValue } = this.state;
     if (e.keyCode === 13) {
-      if (this.state.searchValue.length >= 3) {
-        alert(this.state.searchValue);
+      if (searchValue.length >= 3) {
+        const API = `${API_URL}${searchValue}&fields=${API_URL_FIELDS}`;
+        getBooks(API);
       } else {
         console.log(e);
       }
