@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
-// Semantic UI CSS
-import "semantic-ui-css/semantic.min.css";
+// Bulma CSS
+import "bulma/css/bulma.min.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 
