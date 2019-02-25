@@ -2,6 +2,8 @@ import React from "react";
 import ReactDOM from "react-dom";
 // Bulma CSS
 import "bulma/css/bulma.min.css";
+// Font Awesome CSS
+import "font-awesome/css/font-awesome.min.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 
