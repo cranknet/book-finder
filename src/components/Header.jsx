@@ -1,6 +1,6 @@
 import React from "react";
 
-const Header = () => {
+const Header = (props) => {
   return (
     <React.Fragment>
       {/* Hero Section */}
@@ -45,18 +45,8 @@ const Header = () => {
             <h2 className="subtitle">Powered By Google API</h2>
             <div id="search-form" className="columns">
               <div className="column is-half is-offset-one-quarter">
-                <div className="field">
-                  <div className="control has-icons-left is-large is-loading">
-                    <input
-                      type="text"
-                      className="input is-large is-rounded"
-                      placeholder="Search"
-                    />
-                    <span className="icon is-medium is-left">
-                      <i className="fa fa-search" />
-                    </span>
-                  </div>
-                </div>
+                {/* Search Component as a child to Header */}
+                {props.children}
               </div>
             </div>
           </div>
