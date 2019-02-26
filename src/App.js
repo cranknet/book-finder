@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
+// Spinner CSS Center
+import "./css/spinner.css";
 import Header from "./components/Header";
 import Main from "./components/Main";
 import Footer from "./components/Footer";
@@ -10,6 +12,7 @@ class App extends Component {
     searchValue: "",
     isLoading: false,
     booksData: [],
+    dataLoaded: false,
     error: null
   };
   handleInput = value => {
@@ -34,9 +37,11 @@ class App extends Component {
     axios
       .get(URL)
       .then(result => {
+        console.log(result.data)
         this.setState({
           booksData: result.data,
-          isLoading: false
+          isLoading: false,
+          dataLoaded: true
         });
       })
       .catch(err => {
@@ -58,7 +63,11 @@ class App extends Component {
             {...this.state}
           />
         </Header>
-        <Main />
+        <Main
+          isLoading={this.state.isLoading}
+          data={this.state.booksData}
+          isDataLoaded={this.state.dataLoaded}
+        />
         <Footer />
       </React.Fragment>
     );
