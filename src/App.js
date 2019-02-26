@@ -1,14 +1,16 @@
 import React, { Component } from "react";
+import axios from "axios";
 import Header from "./components/Header";
 import Main from "./components/Main";
 import Footer from "./components/Footer";
 import SearchInput from "./components/SearchInput";
-import getBooks from "./helpers/Helpers";
 import { API_URL, API_URL_FIELDS } from "./constants/constants";
 class App extends Component {
   state = {
     searchValue: "",
-    isLoading: false
+    isLoading: false,
+    booksData: [],
+    error: null
   };
   handleInput = value => {
     this.setState({
@@ -20,11 +22,30 @@ class App extends Component {
     if (e.keyCode === 13) {
       if (searchValue.length >= 3) {
         const API = `${API_URL}${searchValue}&fields=${API_URL_FIELDS}`;
-        getBooks(API);
+        this.getBooks(API);
       } else {
         console.log(e);
       }
     }
+  };
+
+  getBooks = URL => {
+    this.setState({ isLoading: true });
+    axios
+      .get(URL)
+      .then(result => {
+        this.setState({
+          booksData: result.data,
+          isLoading: false
+        });
+      })
+      .catch(err => {
+        console.log(err);
+        this.setState({
+          error: err,
+          isLoading: false
+        });
+      });
   };
 
   render() {
