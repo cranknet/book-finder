@@ -1,6 +1,6 @@
 import React from "react";
 
-const Header = (props) => {
+const Header = props => {
   return (
     <React.Fragment>
       {/* Hero Section */}
@@ -10,8 +10,8 @@ const Header = (props) => {
           <nav className="navbar">
             <div className="container">
               <div className="navbar-brand">
-                <a href="#Bulma" className="navbar-item">
-                  <img src="book.png" alt="Book Finder" className="is-96x96" />
+                <a href="#Home" className="navbar-item">
+                  <img src="Logo.png" alt="Book Finder" className="is-96x96" />
                 </a>
               </div>
               <div id="navbarMenuHeroA" className="navbar-menu">
@@ -19,12 +19,15 @@ const Header = (props) => {
                   <a href="#Home" className="navbar-item is-active">
                     Home
                   </a>
-                  <a href="#Project" className="navbar-item">
+                  <a
+                    href="https://github.com/cranknet/book-finder"
+                    className="navbar-item"
+                  >
                     Project
                   </a>
                   <span className="navbar-item">
                     <a
-                      href="#Download"
+                      href="https://github.com/cranknet/book-finder"
                       className="button is-primary is-inverted"
                     >
                       <span className="icon">
