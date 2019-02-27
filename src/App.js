@@ -26,8 +26,6 @@ class App extends Component {
       if (searchValue.length >= 3) {
         const API = `${API_URL}${searchValue}&fields=${API_URL_FIELDS}`;
         this.getBooks(API);
-      } else {
-        console.log(e);
       }
     }
   };
@@ -37,7 +35,6 @@ class App extends Component {
     axios
       .get(URL)
       .then(result => {
-        console.log(result.data)
         this.setState({
           booksData: result.data,
           isLoading: false,
@@ -54,19 +51,21 @@ class App extends Component {
   };
 
   render() {
+    const { searchValue, isLoading, booksData, dataLoaded } = this.state;
     return (
       <React.Fragment>
         <Header>
           <SearchInput
             handler={this.handleInput}
             keyUpHandler={this.handleSearch}
-            {...this.state}
+            searchValue={searchValue}
+            isLoading={isLoading}
           />
         </Header>
         <Main
-          isLoading={this.state.isLoading}
-          data={this.state.booksData}
-          isDataLoaded={this.state.dataLoaded}
+          isLoading={isLoading}
+          data={booksData}
+          isDataLoaded={dataLoaded}
         />
         <Footer />
       </React.Fragment>
